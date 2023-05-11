@@ -61,7 +61,7 @@ console.log(map(arr, fn));
 =================================================================*/
 
 /*===============================================================
-DAY 5: (2634) Given an integer array arr and a filtering function fn, return a new array with a fewer or equal number of elements. The returned array should only contain elements where fn(arr[i], i) evaluated to a truthy value. Please solve it without the built-in Array.filter method. */
+DAY 5: (2634) Given an integer array arr and a filtering function fn, return a new array with a fewer or equal number of elements. The returned array should only contain elements where fn(arr[i], i) evaluated to a truthy value. Please solve it without the built-in Array.filter method.
 console.log('=== DAY 5 ===');
 const filter = (arr, fn) => {
     let returnedArr = [];
@@ -75,4 +75,46 @@ const filter = (arr, fn) => {
 
 const arr = [1, 2, 3, 4, 5];
 const fn = (x, i) => x % 2 === 0;
-console.log(filter(arr, fn));
+console.log(filter(arr, fn)); */
+
+/*===============================================================
+DAY 6: (2626) Given an integer array nums, a reducer function fn, and an initial value init, return a reduced array. A reduced array is created by applying the following operation: val = fn(init, nums[0]), val = fn(val, nums[1]), val = fn(val, nums[2]), ... until every element in the array has been processed. The final value of val is returned. If the length of the array is 0, it should return init. Please solve it without using the built-in Array.reduce method.
+console.log('=== DAY 6 ===');
+
+const nums = [1, 2, 3, 4, 5];
+const fn = (x, y) => x + y;
+const init = 0;
+
+const reduce = (nums, fn, init) => {
+    let val = init;
+    for (let i = 0; i < nums.length; i++) {
+        val = fn(val, nums[i]);
+    }
+    return val;
+};
+
+console.log(reduce(nums, fn, init));
+
+// A more elegant solution using the reduce method:
+const nums = [1, 2, 3, 4, 5];
+const sum = nums.reduce((acc, curr) => acc + curr, 0);
+
+console.log(sum); */
+
+/*===============================================================
+DAY 7: (2629) Given an array of functions [f1, f2, f3, ..., fn], return a new function fn that is the function composition of the array of functions.
+The function composition of [f(x), g(x), h(x)] is fn(x) = f(g(h(x))).
+The function composition of an empty list of functions is the identity function f(x) = x.
+You may assume each function in the array accepts one integer as input and returns one integer as output. */
+console.log('=== DAY 7 ===');
+const fns = [x => x + 1, x => x + 2, x => x + 3];
+const compose = (fns) => {
+    return (x) => {
+        let val = x;
+        for (let i = fns.length - 1; i >= 0; i--) {
+            val = fns[i](val);
+        }
+        return val;
+    }
+}
+console.log(compose(fns)(0));
