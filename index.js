@@ -105,7 +105,7 @@ console.log(sum); */
 DAY 7: (2629) Given an array of functions [f1, f2, f3, ..., fn], return a new function fn that is the function composition of the array of functions.
 The function composition of [f(x), g(x), h(x)] is fn(x) = f(g(h(x))).
 The function composition of an empty list of functions is the identity function f(x) = x.
-You may assume each function in the array accepts one integer as input and returns one integer as output. */
+You may assume each function in the array accepts one integer as input and returns one integer as output.
 console.log('=== DAY 7 ===');
 const fns = [x => x + 1, x => x + 2, x => x + 3];
 const compose = (fns) => {
@@ -117,4 +117,24 @@ const compose = (fns) => {
         return val;
     }
 }
-console.log(compose(fns)(0));
+console.log(compose(fns)(0)); */
+
+/*===============================================================
+DAY 8: (2666) Given a function fn, return a new function that is identical to the original function except that it ensures fn is called at most once.
+The first time the returned fucntion is called, it should return the same result as fn. Every subsequent time it is called ,it should return undefined.*/
+console.log('=== DAY 8 ===');
+
+let fn = (a, b, c) => a + b + c;
+
+const once = (fn) => {
+    let called = false;
+    return (...args) => {
+        if (!called) {
+            called = true;
+            return fn(...args);
+        }
+    }
+}
+
+const onceFn = once(fn);
+console.log(onceFn(1, 2, 3));
